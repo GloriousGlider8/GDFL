@@ -137,7 +137,11 @@ set_target_properties( godot-cpp
         CXX_VISIBILITY_PRESET hidden    # visibility needs to be the same as the main library
 )
 
+# FFL - i have no clue how cmake works
+add_subdirectory(ffl)
+
 target_link_libraries( ${PROJECT_NAME}
     PRIVATE
         godot-cpp
+        ffl
 )

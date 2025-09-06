@@ -4,7 +4,3 @@
 [submodule "ffl"]
 	path = ffl
 	url = https://github.com/ariankordi/ffl
-[submodule "godot-cpp"]
-	path = godot-cpp
-	url = https://github.com/godotengine/godot-cpp
-	branch = 4.4

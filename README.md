@@ -61,6 +61,7 @@ To use this for your own project:
 
 - _copy_ this repository and rename the directory to the name of your extension
   > GitHub provides a **Use this template** button (beside where you clone a repo). This will [create a copy for you](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template) without all the history.
+  >
 - in _CMakeLists.txt_, change `GDExtensionTemplate` in the `project` macro to the name of your extension
   ```cmake
   project( <your_extension_name_here>
@@ -70,9 +71,11 @@ To use this for your own project:
         0.1.0
   )
   ```
+
   If you also have plain C files in your project, add `C` to the languages.
 - replace the example code in `src` with your own (I would suggest keeping _RegisterExtension.cpp_ and using it to register your classes)
   > **Note:** If you change the entry symbol (`GDExtensionInit`) in _RegisterExtension.cpp_, you will need to update your `templates/*.gdextension.in` files.
+  >
 - replace `CHANGELOG.md` with your own (I would encourage adhering to [Semantic Versioning](https://semver.org/spec/v2.0.0.html) and the use of [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) )
 - replace this `README.md` with your own
 - replace custom node icon ([see below](#custom-node-icons))
@@ -129,12 +132,12 @@ This tells CMake to use `Visual Studio 2022`. There is a list of Visual Studio g
 
 This template defines the following additional CMake options:
 
-| Option                                                                   | Description                                      | Default                                                                                                 |
-| ------------------------------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------- |
-| `CCACHE_PROGRAM`                                                         | Path to `ccache` for faster rebuilds             | This is automatically set **ON** if `ccache` is found. If you do not want to use it, set this to "".    |
-| `CLANG_FORMAT_PROGRAM`                                                   | Path to `clang-format` for code formatting.      | This is automatically set **ON** if `clang-format` is on. If you do not want to use it, set this to "". |
-| `${PROJECT_NAME_UPPERCASE}_WARN_EVERYTHING` (e.g. FOO_WARN_EVERYTHING)   | Turns on all warnings. (Not available for MSVC.) | **OFF** (too noisy, but can be useful sometimes)                                                        |
-| `${PROJECT_NAME_UPPERCASE}_WARNING_AS_ERROR` (e.g. FOO_WARNING_AS_ERROR) | Turns warnings into errors.                      | **ON**                                                                                                  |
+| Option                                                                     | Description                                      | Default                                                                                                        |
+| -------------------------------------------------------------------------- | ------------------------------------------------ | -------------------------------------------------------------------------------------------------------------- |
+| `CCACHE_PROGRAM`                                                         | Path to `ccache` for faster rebuilds           | This is automatically set**ON** if `ccache` is found. If you do not want to use it, set this to "".    |
+| `CLANG_FORMAT_PROGRAM`                                                   | Path to `clang-format` for code formatting.    | This is automatically set**ON** if `clang-format` is on. If you do not want to use it, set this to "". |
+| `${PROJECT_NAME_UPPERCASE}_WARN_EVERYTHING` (e.g. FOO_WARN_EVERYTHING)   | Turns on all warnings. (Not available for MSVC.) | **OFF** (too noisy, but can be useful sometimes)                                                         |
+| `${PROJECT_NAME_UPPERCASE}_WARNING_AS_ERROR` (e.g. FOO_WARNING_AS_ERROR) | Turns warnings into errors.                      | **ON**                                                                                                   |
 
 ## Ongoing Updates
 
