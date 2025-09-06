@@ -137,11 +137,15 @@ set_target_properties( godot-cpp
         CXX_VISIBILITY_PRESET hidden    # visibility needs to be the same as the main library
 )
 
-# FFL - i have no clue how cmake works
 add_subdirectory(ffl)
+add_subdirectory(kaitai_struct_cpp_stl_runtime)
+
+set(FFL_BUILD_SHARED ON)
+set(FFL_MODE "")
 
 target_link_libraries( ${PROJECT_NAME}
     PRIVATE
         godot-cpp
         ffl
+        kaitai_struct_cpp_stl_runtime
 )

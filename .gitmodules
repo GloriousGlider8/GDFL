@@ -4,3 +4,13 @@
 [submodule "ffl"]
 	path = ffl
 	url = https://github.com/ariankordi/ffl
+[submodule "kaitai_struct_cpp_stl_runtime"]
+	path = kaitai_struct_cpp_stl_runtime
+	url = https://github.com/kaitai-io/kaitai_struct_cpp_stl_runtime
+[submodule "rio"]
+	path = rio
+	url = https://github.com/ariankordi/rio
+[submodule "ninTexUtils"]
+	path = ninTexUtils
+	url = https://github.com/ariankordi/ninTexUtils
+	branch = cpp-64bit-linux-fixes
