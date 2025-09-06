@@ -27,9 +27,10 @@ if ( APPLE )
 endif()
 
 # Main project information
-project( GDExtensionTemplate
+project( GDFL
     LANGUAGES
         CXX
+        C
     VERSION
         0.1.0
 )
