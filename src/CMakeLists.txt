@@ -2,8 +2,8 @@
 
 target_sources( ${PROJECT_NAME}
     PRIVATE
-        Example.h
-        Example.cpp
+        Main.h
+        Main.cpp
         GDExtensionTemplate.h
         GDExtensionTemplate.cpp
         RegisterExtension.cpp

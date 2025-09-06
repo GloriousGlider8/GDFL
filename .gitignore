@@ -4,3 +4,4 @@ extension_api.json
 src/kty/g*.cpp
 src/kty/g*.h
 .vscode/
+build/

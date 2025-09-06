@@ -5,6 +5,8 @@
 #include "godot_cpp/core/binder_common.hpp"
 #include "godot_cpp/classes/texture_rect.hpp"
 
+#include "kty/mii_data.h"
+
 class GDFLMii : public godot::Resource
 {
     GDCLASS( GDFLMii, godot::Resource )
@@ -13,21 +15,24 @@ public:
     GDFLMii();
     ~GDFLMii() override;
 
-    bool initialised = false;
-    int generation = 0;
-    bool copying;
     godot::String mii_name;
+    godot::String creator_name;
+    bool initialised = false;
+    bool copying;
+    bool mingle;
+    bool hair_flip;
+    bool is_female;
+    bool is_favorite;
+    bool is_special;
+    bool mole_enable;
     int body_height;
     int body_weight;
     int skin_color;
     int face_type;
-    bool mingle;
     int face_makeup;
     int face_wrinkles;
     int hair_type;
-    bool hair_flip;
     int hair_color;
-    godot::String creator_name;
     int glasses_color;
     int eyebrow_horizontal;
     int eye_vertical;
@@ -59,95 +64,34 @@ public:
     int eyebrow_vertical;
     int glasses_size;
     int eye_rotation;
-    bool is_female;
     int birth_day;
     int mouth_stretch;
-    int mole_enable;
-    bool is_favorite;
-    bool is_special;
     int glasses_vertical;
     int favorite_color;
     int mouth_type;
     int facial_hair_size;
     
-    virtual void load_data(godot::PackedByteArray data);
-    virtual godot::PackedByteArray get_data();
+    void from_rsd(godot::PackedByteArray data);
+    void from_ffsd(godot::PackedByteArray data);
+    void from_charinfo(godot::PackedByteArray data);
+    void from_studio(godot::PackedByteArray data);
+    void from_miic(godot::PackedByteArray data);
 
+    godot::PackedByteArray to_rsd();
+    godot::PackedByteArray to_ffsd();
+    godot::PackedByteArray to_charinfo();
+    godot::PackedByteArray to_studio();
+    godot::PackedByteArray to_miic();
 protected:
     static void _bind_methods();
 };
-
-class GDFLG1Mii : public GDFLMii
+class GDFLMiiGLBProcessor : public godot::Node
 {
-    GDCLASS( GDFLG1Mii, GDFLMii )
+    GDCLASS( GDFLMiiGLBProcessor, godot::Node )
 
 public:
-    GDFLG1Mii();
-    ~GDFLG1Mii() override;
-    
-    int generation = 1;
-
-    void load_data(godot::PackedByteArray data) override;
-
-protected:
-    static void _bind_methods();
-};
-
-class GDFLG2Mii : public GDFLMii
-{
-    GDCLASS( GDFLG2Mii, GDFLMii )
-
-public:
-    GDFLG2Mii();
-    ~GDFLG2Mii() override;
-    
-    int generation = 2;
-
-    void load_data(godot::PackedByteArray data) override;
-
-protected:
-    static void _bind_methods();
-};
-
-class GDFLG3Mii : public GDFLMii
-{
-    GDCLASS( GDFLG3Mii, GDFLMii )
-
-public:
-    GDFLG3Mii();
-    ~GDFLG3Mii() override;
-    
-    int generation = 3;
-
-    void load_data(godot::PackedByteArray data) override;
-
-protected:
-    static void _bind_methods();
-};
-
-class GDFLG4Mii : public GDFLMii
-{
-    GDCLASS( GDFLG4Mii, GDFLMii )
-
-public:
-    GDFLG4Mii();
-    ~GDFLG4Mii() override;
-    
-    int generation = 4;
-
-    void load_data(godot::PackedByteArray data) override;
-
-protected:
-    static void _bind_methods();
-};
-
-class GDFLMiiGLBRenderer : public godot::Node
-{
-    GDCLASS( GDFLMiiGLBRenderer, godot::Node )
-
-public:
-    GDFLMiiGLBRenderer();
-    ~GDFLMiiGLBRenderer() override;
+    GDFLMiiGLBProcessor();
+    ~GDFLMiiGLBProcessor() override;
 
     GDFLMii mii;
     godot::String expression = "normal";
