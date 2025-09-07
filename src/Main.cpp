@@ -2,6 +2,7 @@
 
 #include "godot_cpp/classes/global_constants.hpp"
 #include "godot_cpp/core/class_db.hpp"
+#include "godot_cpp/core/method_bind.hpp"
 #include "godot_cpp/variant/utility_functions.hpp"
 
 #include "Main.h"
@@ -72,4 +73,8 @@ void GDFLMii::from_ffsd(godot::PackedByteArray data) {
     this->mouth_type = kty.mouth_type();
     this->facial_hair_size = kty.facial_hair_size();
     this->initialised = true;
+};
+
+void GDFLMii::_bind_methods() {
+    godot::ClassDB::bind_method(godot::D_METHOD("from_ffsd", "data"), &GDFLMii::from_ffsd);
 };

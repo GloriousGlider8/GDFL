@@ -26,16 +26,11 @@ namespace
             return;
         }
 
-        godot::ClassDB::register_class<GDFLMii>();
-        godot::ClassDB::register_class<GDFLG1Mii>();
-        godot::ClassDB::register_class<GDFLG2Mii>();
-        godot::ClassDB::register_class<GDFLG3Mii>();
-        godot::ClassDB::register_class<GDFLG4Mii>();
-        
-        godot::ClassDB::register_class<GDFLMiiGLBRenderer>();
-        godot::ClassDB::register_class<GDFLMiiPortrait>();
-
         godot::ClassDB::register_class<GDExtensionTemplate>();
+
+        godot::ClassDB::register_class<GDFLMii>();
+        godot::ClassDB::register_class<GDFLMiiGLBProcessor>();
+        godot::ClassDB::register_class<GDFLMiiPortrait>();
     }
 
     /// @brief Called by Godot to let us do any cleanup.

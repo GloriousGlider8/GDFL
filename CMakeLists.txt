@@ -84,7 +84,7 @@ add_custom_command(
 )
 
 # Warnings
-include( CompilerWarnings )
+#include( CompilerWarnings )
 
 # Create and include version info file from git
 include( GitVersionInfo )
@@ -121,31 +121,33 @@ include( ClangFormat )
 
 # godot-cpp
 # From here: https://github.com/godotengine/godot-cpp
-if ( NOT EXISTS "${CMAKE_CURRENT_LIST_DIR}/extern/godot-cpp/Makefile" )
-    message(
-        FATAL_ERROR
-            "[${PROJECT_NAME}] The godot-cpp submodule was not downloaded. Please update submodules: git submodule update --init --recursive."
-    )
-endif()
+#if ( NOT EXISTS "${CMAKE_CURRENT_LIST_DIR}/extern/godot-cpp/Makefile" )
+#    message(
+#        FATAL_ERROR
+#            "[${PROJECT_NAME}] The godot-cpp submodule was not downloaded. Please update submodules: git submodule update --init --recursive."
+#    )
+#endif()
+#
+#set( GODOT_CPP_SYSTEM_HEADERS ON CACHE BOOL "" FORCE )
+#
+#add_subdirectory( extern/godot-cpp )
+#
+#set_target_properties( godot-cpp
+#    PROPERTIES
+#        CXX_VISIBILITY_PRESET hidden    # visibility needs to be the same as the main library
+#)
 
-set( GODOT_CPP_SYSTEM_HEADERS ON CACHE BOOL "" FORCE )
-
-add_subdirectory( extern/godot-cpp )
-
-set_target_properties( godot-cpp
-    PROPERTIES
-        CXX_VISIBILITY_PRESET hidden    # visibility needs to be the same as the main library
+include_directories(
+    extern/godot-cpp/include
+    extern/godot-cpp/gen/include
+    extern/godot-cpp/gdextension
+    ffl/include
+    kaitai_struct_cpp_stl_runtime
 )
-
-add_subdirectory(ffl)
-add_subdirectory(kaitai_struct_cpp_stl_runtime)
-
-set(FFL_BUILD_SHARED ON)
-set(FFL_MODE "")
 
 target_link_libraries( ${PROJECT_NAME}
     PRIVATE
-        godot-cpp
-        ffl
-        kaitai_struct_cpp_stl_runtime
+        ${GODOT_LIB_IMPORT}
+        ${FFL_LIB_IMPORT}
+        ${KT_LIB_IMPORT}
 )

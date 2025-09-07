@@ -71,17 +71,17 @@ public:
     int mouth_type;
     int facial_hair_size;
     
-    void from_rsd(godot::PackedByteArray data);
+    //void from_rsd(godot::PackedByteArray data);
     void from_ffsd(godot::PackedByteArray data);
-    void from_charinfo(godot::PackedByteArray data);
-    void from_studio(godot::PackedByteArray data);
-    void from_miic(godot::PackedByteArray data);
-
+    //void from_charinfo(godot::PackedByteArray data);
+    //void from_studio(godot::PackedByteArray data);
+    //void from_miic(godot::PackedByteArray data);
+/*
     godot::PackedByteArray to_rsd();
     godot::PackedByteArray to_ffsd();
     godot::PackedByteArray to_charinfo();
     godot::PackedByteArray to_studio();
-    godot::PackedByteArray to_miic();
+    godot::PackedByteArray to_miic();*/
 protected:
     static void _bind_methods();
 };
