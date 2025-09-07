@@ -3,5 +3,5 @@ CMakeLists.txt.user
 extension_api.json
 .vscode/
 build/
-logs/
+logs/*
 testproj/lib/
