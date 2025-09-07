@@ -9,6 +9,8 @@ target_sources( ${PROJECT_NAME}
         RegisterExtension.cpp
 )
 
+add_subdirectory(kty)
+
 target_include_directories( ${PROJECT_NAME}
     PRIVATE
         "src"

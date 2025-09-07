@@ -15,7 +15,7 @@
 void GDFLMii::from_ffsd(godot::PackedByteArray data) {
     std::string buf(reinterpret_cast<const char*>(data.ptr()), data.size());
 
-    kaitai::kstream ks(buf);
+    kaitai::kstream ks(buf.c_str());
     g2_t kty(&ks);
 
     this->mii_name = godot::String(kty.mii_name().c_str());

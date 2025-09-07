@@ -119,6 +119,10 @@ include( ccache )
 # Adds a custom target to format all the code at once
 include( ClangFormat )
 
+set( compiler_is_clang "$<OR:$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:Clang>>" )
+set( compiler_is_gnu "$<CXX_COMPILER_ID:GNU>" )
+set( compiler_is_msvc "$<CXX_COMPILER_ID:MSVC>" )
+
 # godot-cpp
 # From here: https://github.com/godotengine/godot-cpp
 #if ( NOT EXISTS "${CMAKE_CURRENT_LIST_DIR}/extern/godot-cpp/Makefile" )
@@ -143,6 +147,16 @@ include_directories(
     extern/godot-cpp/gdextension
     ffl/include
     kaitai_struct_cpp_stl_runtime
+)
+
+target_compile_definitions(${PROJECT_NAME} PUBLIC
+	$<$<CONFIG:Debug>:
+		DEBUG_ENABLED
+		DEBUG_METHODS_ENABLED
+	>
+	$<${compiler_is_msvc}:
+		TYPED_METHOD_BIND
+	>
 )
 
 target_link_libraries( ${PROJECT_NAME}

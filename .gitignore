@@ -1,8 +1,7 @@
 CMakeLists.txt.user
 .vscode/settings.json
 extension_api.json
-src/kty/g*.cpp
-src/kty/g*.h
 .vscode/
 build/
 logs/
+testproj/lib/
