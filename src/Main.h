@@ -7,69 +7,64 @@
 
 #include "kty/mii_data.h"
 
-class GDFLMii : public godot::Resource
-{
+class GDFLMii : public godot::Resource {
     GDCLASS( GDFLMii, godot::Resource )
-
 public:
-    GDFLMii();
-    ~GDFLMii() override;
-
-    godot::String mii_name;
-    godot::String creator_name;
+    godot::String mii_name = godot::String("");
+    godot::String creator_name = godot::String("");
     bool initialised = false;
-    bool copying;
-    bool mingle;
-    bool hair_flip;
-    bool is_female;
-    bool is_favorite;
-    bool is_special;
-    bool mole_enable;
-    int body_height;
-    int body_weight;
-    int skin_color;
-    int face_type;
-    int face_makeup;
-    int face_wrinkles;
-    int hair_type;
-    int hair_color;
-    int glasses_color;
-    int eyebrow_horizontal;
-    int eye_vertical;
-    int facial_hair_beard;
-    int mouth_size;
-    int eyebrow_stretch;
-    int nose_vertical;
-    int eye_color;
-    int birth_month;
-    int mouth_color;
-    int mole_horizontal;
-    int facial_hair_mustache;
-    int eyebrow_rotation;
-    int mole_vertical;
-    int glasses_type;
-    int eyebrow_size;
-    int mole_size;
-    int nose_size;
-    int facial_hair_vertical;
-    int eye_stretch;
-    int eye_size;
-    int eye_type;
-    int eye_horizontal;
-    int eyebrow_type;
-    int mouth_vertical;
-    int eyebrow_color;
-    int nose_type;
-    int facial_hair_color;
-    int eyebrow_vertical;
-    int glasses_size;
-    int eye_rotation;
-    int birth_day;
-    int mouth_stretch;
-    int glasses_vertical;
-    int favorite_color;
-    int mouth_type;
-    int facial_hair_size;
+    bool copying = false;
+    bool mingle = false;
+    bool hair_flip = false;
+    bool is_female = false;
+    bool is_favorite = false;
+    bool is_special = false;
+    bool mole_enable = false;
+    int body_height = 0;
+    int body_weight = 0;
+    int skin_color = 0;
+    int face_type = 0;
+    int face_makeup = 0;
+    int face_wrinkles = 0;
+    int hair_type = 0;
+    int hair_color = 0;
+    int glasses_color = 0;
+    int eyebrow_horizontal = 0;
+    int eye_vertical = 0;
+    int facial_hair_beard = 0;
+    int mouth_size = 0;
+    int eyebrow_stretch = 0;
+    int nose_vertical = 0;
+    int eye_color = 0;
+    int birth_month = 0;
+    int mouth_color = 0;
+    int mole_horizontal = 0;
+    int facial_hair_mustache = 0;
+    int eyebrow_rotation = 0;
+    int mole_vertical = 0;
+    int glasses_type = 0;
+    int eyebrow_size = 0;
+    int mole_size = 0;
+    int nose_size = 0;
+    int facial_hair_vertical = 0;
+    int eye_stretch = 0;
+    int eye_size = 0;
+    int eye_type = 0;
+    int eye_horizontal = 0;
+    int eyebrow_type = 0;
+    int mouth_vertical = 0;
+    int eyebrow_color = 0;
+    int nose_type = 0;
+    int facial_hair_color = 0;
+    int eyebrow_vertical = 0;
+    int glasses_size = 0;
+    int eye_rotation = 0;
+    int birth_day = 0;
+    int mouth_stretch = 0;
+    int glasses_vertical = 0;
+    int favorite_color = 0;
+    int mouth_type = 0;
+    int facial_hair_size = 0;
     
     //void from_rsd(godot::PackedByteArray data);
     void from_ffsd(godot::PackedByteArray data);
@@ -85,33 +80,34 @@ public:
 protected:
     static void _bind_methods();
 };
-class GDFLMiiGLBProcessor : public godot::Node
-{
-    GDCLASS( GDFLMiiGLBProcessor, godot::Node )
 
+class GDFLBasicTestClass : public godot::Object {
+    GDCLASS(GDFLBasicTestClass, godot::Object);
 public:
-    GDFLMiiGLBProcessor();
-    ~GDFLMiiGLBProcessor() override;
-
-    GDFLMii mii;
-    godot::String expression = "normal";
-    bool resource_high = false;
-    bool head_only = false;
-
-    godot::PackedByteArray get_glb();
+    void test_func();
+    GDFLBasicTestClass();
 
 protected:
     static void _bind_methods();
 };
 
-class GDFLMiiPortrait : public godot::TextureRect
-{
-    GDCLASS( GDFLMiiPortrait, godot::TextureRect )
-
+/*class GDFLMiiGLBProcessor : public godot::Node {
+    GDCLASS( GDFLMiiGLBProcessor, godot::Node )
 public:
-    GDFLMiiPortrait();
-    ~GDFLMiiPortrait() override;
+    GDFLMii mii;
+    godot::String expression = "normal";
+    bool resource_high = false;
+    bool head_only = false;
 
+    //godot::PackedByteArray get_glb();
+
+protected:
+    static void _bind_methods();
+};
+
+class GDFLMiiPortrait : public godot::TextureRect {
+    GDCLASS( GDFLMiiPortrait, godot::TextureRect )
+public:
     GDFLMii mii;
     godot::String expression = "normal";
     int resolution = 800;
@@ -120,4 +116,4 @@ public:
 
 protected:
     static void _bind_methods();
-};
+};*/

@@ -6,6 +6,6 @@ compatibility_minimum = 4.1
 Example = "icons/Example.svg"
 
 [libraries]
-linux.x86_64 = "lib/Linux-x86_64/libGDFL.so"
-macos = "lib/Darwin-universal/libGDFL.dylib"
-windows.x86_64 = "lib/Windows-AMD64/GDFL.dll"
+linux.x86_64 = "lib/Linux-x86_64/Release/libGDFL.so"
+macos = "lib/Darwin-universal/Release/libGDFL.dylib"
+windows.x86_64 = "lib/Windows-AMD64/Release/GDFL.dll"

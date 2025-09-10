@@ -5,3 +5,4 @@ extension_api.json
 build/
 logs/*
 testproj/lib/
+testproj/.godot/

@@ -1,7 +1,6 @@
 import os
 import colorama as c
 import shutil
-import runpy
 import click
 
 # Required libraries:
@@ -22,7 +21,7 @@ import click
 @click.option("--vcpkg-triplet", "-T", help="Target triplet for VCPKG. (default: x64-windows)", default="x64-windows", type=str)
 @click.option("--config-only", "-C", help="Only generates config files, no building.", is_flag=True)
 @click.option("--debug", "-D", help="Generates a debug build.", is_flag=True)
-@click.option("--godot-library", help="Name of library to use from godot-cpp. (default: windows.debug.64)", default="windows.debug.64", type=str)
+@click.option("--godot-library", help="Name of library to use from godot-cpp. (default: windows.release.64)", default="windows.release.64", type=str)
 def main(keep_build, vcpkg_root, vcpkg_triplet, config_only, debug, godot_library):
 	btype = "Debug" if debug else "Release"
  
@@ -47,7 +46,7 @@ def main(keep_build, vcpkg_root, vcpkg_triplet, config_only, debug, godot_librar
 	if not os.path.exists(os.path.join("extern", "godot-cpp", "build", "bin", btype, "godot-cpp." + godot_library + ".lib")):
 		os.chdir(os.path.join("extern", "godot-cpp"))
 		print(f"{c.Fore.CYAN}Building godot-cpp...{c.Style.RESET_ALL}")
-		os.system(f"cmake -S . -B build > {os.path.join(os.path.dirname(__file__), "logs", "godot-config.log")}")
+		os.system(f"cmake -S . -B build -DCMAKE_BUILD_TYPE={btype} > {os.path.join(os.path.dirname(__file__), "logs", "godot-config.log")}")
 		os.system(f"cmake --build build --config {btype} > {os.path.join(os.path.dirname(__file__), "logs", "godot-build.log")}")
 
 	os.chdir(os.path.dirname(__file__))
@@ -72,6 +71,7 @@ def main(keep_build, vcpkg_root, vcpkg_triplet, config_only, debug, godot_librar
 		exit(1)
   
 	print(f"{c.Style.RESET_ALL}{c.Fore.GREEN}Build successful!{c.Style.RESET_ALL}")
+	shutil.copytree(os.path.join(os.path.dirname(__file__), "build", "GDFL"), os.path.join(os.path.dirname(__file__), "testproj"), dirs_exist_ok=True)
 
 if __name__ == "__main__":
 	main()

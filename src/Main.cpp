@@ -13,10 +13,14 @@
 
 // GDFLMii
 void GDFLMii::from_ffsd(godot::PackedByteArray data) {
+    godot::UtilityFunctions::print(data);
     std::string buf(reinterpret_cast<const char*>(data.ptr()), data.size());
+    godot::UtilityFunctions::print("a");
 
     kaitai::kstream ks(buf.c_str());
+    godot::UtilityFunctions::print("b");
     g2_t kty(&ks);
+    godot::UtilityFunctions::print("c");
 
     this->mii_name = godot::String(kty.mii_name().c_str());
     this->creator_name = godot::String(kty.creator_name().c_str());
@@ -73,8 +77,25 @@ void GDFLMii::from_ffsd(godot::PackedByteArray data) {
     this->mouth_type = kty.mouth_type();
     this->facial_hair_size = kty.facial_hair_size();
     this->initialised = true;
+    godot::UtilityFunctions::print("d");
 };
 
 void GDFLMii::_bind_methods() {
     godot::ClassDB::bind_method(godot::D_METHOD("from_ffsd", "data"), &GDFLMii::from_ffsd);
 };
+
+void GDFLBasicTestClass::test_func() {
+    godot::UtilityFunctions::print("worked, bitch");
+};
+
+void GDFLBasicTestClass::_bind_methods() {
+    godot::ClassDB::bind_method(godot::D_METHOD("test_func"), &GDFLBasicTestClass::test_func);
+};
+
+GDFLBasicTestClass::GDFLBasicTestClass() {
+    godot::UtilityFunctions::print("constructed, bitch");
+}
+
+//void GDFLMiiGLBProcessor::_bind_methods() {};
+
+//void GDFLMiiPortrait::_bind_methods() {};

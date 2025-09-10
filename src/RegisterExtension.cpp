@@ -29,8 +29,9 @@ namespace
         godot::ClassDB::register_class<GDExtensionTemplate>();
 
         godot::ClassDB::register_class<GDFLMii>();
-        godot::ClassDB::register_class<GDFLMiiGLBProcessor>();
-        godot::ClassDB::register_class<GDFLMiiPortrait>();
+        godot::ClassDB::register_class<GDFLBasicTestClass>();
+        //godot::ClassDB::register_class<GDFLMiiGLBProcessor>();
+        //godot::ClassDB::register_class<GDFLMiiPortrait>();
     }
 
     /// @brief Called by Godot to let us do any cleanup.
