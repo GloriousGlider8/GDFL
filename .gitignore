@@ -6,4 +6,3 @@ build/
 logs/*
 testproj/lib/
 testproj/.godot/
-extern/godot-cpp/
