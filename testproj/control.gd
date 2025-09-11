@@ -24,6 +24,6 @@ func _ready():
 	print(c.is_favorite)
 
 	print("Gender:")
-	print("Female" if a.is_female else "Male")
-	print("Female" if b.is_female else "Male")
-	print("Female" if c.is_female else "Male")
+	print("Female" if a.is_male else "Male")
+	print("Female" if b.is_male else "Male")
+	print("Female" if c.is_male else "Male")
