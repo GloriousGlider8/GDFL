@@ -10,6 +10,8 @@ run build.py to build (build.py was made with windows in mind)
 - libiconv
 - gtest
 
+*The reason why most C++ dependencies are not VCPKG ones is because VCPKG is a nightmare to setup properly.*
+
 #### PyPi
 
 - click
