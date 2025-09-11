@@ -27,7 +27,7 @@ void GDFLMii::from_ffsd(godot::PackedByteArray data) {
     mingle = kty.mingle();
     hair_flip = kty.hair_flip();
     is_favorite = kty.favorite();
-    is_female = (kty.gender() == 1);
+    is_male = (kty.gender() == 1);
     mole_enable = (kty.mole_enable() == 1);
     is_special = false;
     body_height = kty.body_height();
@@ -87,7 +87,7 @@ void GDFLMii::_bind_methods() {
     BIND_PROPERTY(hair_flip, godot::Variant::BOOL);
     BIND_PROPERTY(initialised, godot::Variant::BOOL);
     BIND_PROPERTY(is_favorite, godot::Variant::BOOL);
-    BIND_PROPERTY(is_female, godot::Variant::BOOL);
+    BIND_PROPERTY(is_male, godot::Variant::BOOL);
     BIND_PROPERTY(mingle, godot::Variant::BOOL);
     BIND_PROPERTY(mole_enable, godot::Variant::BOOL);
     BIND_PROPERTY(is_special, godot::Variant::BOOL);

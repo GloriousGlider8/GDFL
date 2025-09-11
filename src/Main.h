@@ -25,7 +25,7 @@ public:
     PROP_DEF(copying, bool, false);
     PROP_DEF(mingle, bool, false);
     PROP_DEF(hair_flip, bool, false);
-    PROP_DEF(is_female, bool, false);
+    PROP_DEF(is_male, bool, false);
     PROP_DEF(is_favorite, bool, false);
     PROP_DEF(is_special, bool, false);
     PROP_DEF(mole_enable, bool, false);
