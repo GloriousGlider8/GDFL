@@ -146,22 +146,26 @@ include_directories(
     extern/godot-cpp/gen/include
     extern/godot-cpp/gdextension
     ffl/include
+    rio/include
+    ninTexUtils/include
     kaitai_struct_cpp_stl_runtime
+    glfw/include
 )
 
-target_compile_definitions(${PROJECT_NAME} PUBLIC
-	$<$<CONFIG:Debug>:
-		DEBUG_ENABLED
-		DEBUG_METHODS_ENABLED
-	>
-	$<${compiler_is_msvc}:
-		TYPED_METHOD_BIND
-	>
+target_compile_definitions(${PROJECT_NAME} 
+	PUBLIC
+	$<$<CONFIG:Debug>:DEBUG_ENABLED;DEBUG_METHODS_ENABLED;RIO_DEBUG>
+	$<$<CONFIG:Release>:RIO_RELEASE>
 )
+
+if(MSVC)
+	target_compile_definitions(${PROJECT_NAME} PUBLIC TYPED_METHOD_BIND)
+endif()
 
 target_link_libraries( ${PROJECT_NAME}
     PRIVATE
         ${GODOT_LIB_IMPORT}
         ${FFL_LIB_IMPORT}
         ${KT_LIB_IMPORT}
+        ${GLFW_LIB_IMPORT}
 )

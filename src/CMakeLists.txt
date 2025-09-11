@@ -7,6 +7,9 @@ target_sources( ${PROJECT_NAME}
         GDExtensionTemplate.h
         GDExtensionTemplate.cpp
         RegisterExtension.cpp
+        #FFLWrapper.cpp
+        #FFLWrapper.h
+        GDClassSTLConv.h
 )
 
 add_subdirectory(kty)

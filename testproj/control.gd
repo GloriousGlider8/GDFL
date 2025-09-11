@@ -1,8 +1,9 @@
 extends Control
 
 func _ready():
-	var a = GDFLBasicTestClass.new()
-	a.test_func()
-	var m = GDFLMii.new()
 	print("a")
-	m.from_ffsd(PackedByteArray([]))
+	var a = GDFLMii.new()
+	a.from_ffsd(FileAccess.get_file_as_bytes("res://CPU_Displayette.ffsd"))
+	print("FFSD Loaded!")
+	print(a.mii_name)
+	print("if that said display GB then FUCK YES WE FINALLY BEAT THE GD-KAITAI BARRIER!	")

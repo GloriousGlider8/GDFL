@@ -3,23 +3,32 @@
 
 #include "godot_cpp/classes/global_constants.hpp"
 #include "godot_cpp/core/binder_common.hpp"
+#include "godot_cpp/core/class_db.hpp"
+#include "godot_cpp/core/method_bind.hpp"
+#include "godot_cpp/variant/utility_functions.hpp"
 #include "godot_cpp/classes/texture_rect.hpp"
+#include "godot_cpp/classes/node3d.hpp"
 
 #include "kty/mii_data.h"
 
-class GDFLMii : public godot::Resource {
-    GDCLASS( GDFLMii, godot::Resource )
+#define PROP_DEF(prop, type, default_value) \
+	type prop = default_value; \
+	void set_##prop(type value) { prop = value; } \
+	type get_##prop() const { return prop; }
+
+class GDFLMii: public godot::Resource {
+    GDCLASS(GDFLMii, godot::Resource)
 public:
-    godot::String mii_name = godot::String("");
-    godot::String creator_name = godot::String("");
-    bool initialised = false;
-    bool copying = false;
-    bool mingle = false;
-    bool hair_flip = false;
-    bool is_female = false;
-    bool is_favorite = false;
-    bool is_special = false;
-    bool mole_enable = false;
+    PROP_DEF(mii_name, godot::String, godot::String("Unknown"));
+    PROP_DEF(creator_name, godot::String, godot::String("Unknown"));
+    PROP_DEF(initialised, bool, false);
+    PROP_DEF(copying, bool, false);
+    PROP_DEF(mingle, bool, false);
+    PROP_DEF(hair_flip, bool, false);
+    PROP_DEF(is_female, bool, false);
+    PROP_DEF(is_favorite, bool, false);
+    PROP_DEF(is_special, bool, false);
+    PROP_DEF(mole_enable, bool, false);
     int body_height = 0;
     int body_weight = 0;
     int skin_color = 0;
@@ -81,39 +90,31 @@ protected:
     static void _bind_methods();
 };
 
-class GDFLBasicTestClass : public godot::Object {
-    GDCLASS(GDFLBasicTestClass, godot::Object);
+class GDFLMiiHead3D: public godot::Node3D {
+    GDCLASS(GDFLMiiHead3D, godot::Node3D);
 public:
-    void test_func();
-    GDFLBasicTestClass();
+    GDFLMii mii;
+    PROP_DEF(expression, godot::String, godot::String("normal"));
+    PROP_DEF(resource_high, bool, false);
+    PROP_DEF(head_only, bool, false);
+
+    void load_mii(GDFLMii mii);
 
 protected:
     static void _bind_methods();
 };
 
-/*class GDFLMiiGLBProcessor : public godot::Node {
-    GDCLASS( GDFLMiiGLBProcessor, godot::Node )
+class GDFLMiiTextureRect: public godot::TextureRect {
+    GDCLASS(GDFLMiiTextureRect, godot::TextureRect);
 public:
     GDFLMii mii;
-    godot::String expression = "normal";
-    bool resource_high = false;
-    bool head_only = false;
+    PROP_DEF(expression, godot::String, godot::String("normal"));
+    PROP_DEF(resolution, int, 800);
+    PROP_DEF(resource_high, bool, false);
+    PROP_DEF(head_only, bool, false);
 
-    //godot::PackedByteArray get_glb();
+    void load_mii(GDFLMii mii);
 
 protected:
     static void _bind_methods();
 };
-
-class GDFLMiiPortrait : public godot::TextureRect {
-    GDCLASS( GDFLMiiPortrait, godot::TextureRect )
-public:
-    GDFLMii mii;
-    godot::String expression = "normal";
-    int resolution = 800;
-    bool resource_high = false;
-    bool head_only = false;
-
-protected:
-    static void _bind_methods();
-};*/
