@@ -24,38 +24,6 @@ import click
 @click.option("--godot-library", help="Name of library to use from godot-cpp. (default: windows.template_release.x86_64)", default="windows.template_release.x86_64", type=str)
 def main(keep_build, vcpkg_root, vcpkg_triplet, config_only, debug, godot_library):
 	btype = "Debug" if debug else "Release"
- 
-	os.chdir(os.path.dirname(__file__))
- 
-	if not os.path.exists(os.path.join("ffl", "build", btype, "ffl.lib")):
-		os.chdir("ffl")
-		print(f"{c.Fore.CYAN}Building FFL...{c.Style.RESET_ALL}")
-		os.system(f"cmake -S . -B build -DFFL_BUILD_SHARED=ON -DFFL_MODE=\"\" > {os.path.join(os.path.dirname(__file__), "logs", "ffl-config.log")}")
-		os.system(f"cmake --build build --config {btype} > {os.path.join(os.path.dirname(__file__), "logs", "ffl-build.log")}")
-	
-	os.chdir(os.path.dirname(__file__))
- 
-	if not os.path.exists(os.path.join("glfw", "build", "src", btype, "glfw3dll.lib")):
-		os.chdir("glfw")
-		print(f"{c.Fore.CYAN}Building GLFW...{c.Style.RESET_ALL}")
-		os.system(f"cmake -S . -B build -DBUILD_SHARED_LIBS=ON > {os.path.join(os.path.dirname(__file__), "logs", "glfw-config.log")}")
-		os.system(f"cmake --build build --config {btype} > {os.path.join(os.path.dirname(__file__), "logs", "glfw-build.log")}")
-	
-	os.chdir(os.path.dirname(__file__))
- 
-	if not os.path.exists(os.path.join("kaitai_struct_cpp_stl_runtime", "build", btype, "kaitai_struct_cpp_stl_runtime.lib")):
-		os.chdir("kaitai_struct_cpp_stl_runtime")
-		print(f"{c.Fore.CYAN}Building kaitai_struct_cpp_stl_runtime...{c.Style.RESET_ALL}")
-		os.system(f"cmake -S . -B build -DBUILD_TESTS=OFF > {os.path.join(os.path.dirname(__file__), "logs", "kt-config.log")}")
-		os.system(f"cmake --build build --config {btype} > {os.path.join(os.path.dirname(__file__), "logs", "kt-build.log")}")
-	
-	os.chdir(os.path.dirname(__file__))
-
-	if not os.path.exists(os.path.join("extern", "godot-cpp", "build", "bin", "libgodot-cpp." + godot_library + ".lib")):
-		os.chdir(os.path.join("extern", "godot-cpp"))
-		print(f"{c.Fore.CYAN}Building godot-cpp...{c.Style.RESET_ALL}")
-		os.system(f"cmake -S . -B build -DCMAKE_BUILD_TYPE={btype} -DCMAKE_MSVC_RUNTIME_LIBRARY=MultiThreadedDLL -DBUILD_SHARED_LIBS=ON > {os.path.join(os.path.dirname(__file__), "logs", "godot-config.log")}")
-		os.system(f"cmake --build build --config {btype} > {os.path.join(os.path.dirname(__file__), "logs", "godot-build.log")}")
 
 	os.chdir(os.path.dirname(__file__))
   

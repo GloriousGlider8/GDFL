@@ -1,18 +1,7 @@
 put the version of [godot-cpp](https://github.com/godotengine/godot-cpp) from the [releases](https://github.com/godotengine/godot-cpp/releases) matching your godot version in extern/godot-cpp
 
-run build.py to build (build.py was made with windows in mind)
+# PLEASE NOTE
 
-### Required libraries:
+im now in the middle of implementing stuff from fusion mii and that
 
-#### VCPKG
-
-- zlib
-- libiconv
-- gtest
-
-*The reason why most C++ dependencies are not VCPKG ones is because VCPKG is a nightmare to setup properly.*
-
-#### PyPi
-
-- click
-- colorama
+so yeah

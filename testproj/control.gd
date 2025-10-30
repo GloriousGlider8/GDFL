@@ -4,7 +4,7 @@ func _ready():
 	var a = GDFLMii.new()
 	var b = GDFLMii.new()
 	var c = GDFLMii.new()
-	a.from_ffsd(FileAccess.get_file_as_bytes("res://CPU_Displayette.ffsd"))
+	a.from_ffsd(FileAccess.get_file_as_bytes("res://DFT_Cam.ffsd"))
 	b.from_ffsd(FileAccess.get_file_as_bytes("res://DFT_Mirvi.ffsd"))
 	c.from_ffsd(FileAccess.get_file_as_bytes("res://DFT_Sam.ffsd"))
 
@@ -23,7 +23,12 @@ func _ready():
 	print(b.is_favorite)
 	print(c.is_favorite)
 
-	print("Gender:")
-	print("Female" if a.is_male else "Male")
-	print("Female" if b.is_male else "Male")
-	print("Female" if c.is_male else "Male")
+	print("Genders:")
+	print("Female" if a.is_female else "Male")
+	print("Female" if b.is_female else "Male")
+	print("Female" if c.is_female else "Male")
+
+	print("Birthdays:")
+	print(str(a.birth_day, "/", a.birth_month))
+	print(str(a.birth_day, "/", a.birth_month))
+	print(str(a.birth_day, "/", a.birth_month))
