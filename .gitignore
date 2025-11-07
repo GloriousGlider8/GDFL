@@ -4,6 +4,10 @@ extension_api.json
 .vscode/
 build/
 logs/*
-testproj/lib/
+testproj/addons/gdfl/lib/
+testproj/addons/gdfl/icons/
 testproj/.godot/
-extern/godot-cpp
+extern/godot-cpp/*
+*~lock~
+*.ffra
+*.import

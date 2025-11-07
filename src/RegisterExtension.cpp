@@ -6,8 +6,7 @@
 #include "godot_cpp/core/defs.hpp"
 #include "godot_cpp/godot.hpp"
 
-#include "Main.h"
-#include "GDExtensionTemplate.h"
+#include "All.hpp"
 
 /// @file
 /// Register our classes with Godot.
@@ -26,11 +25,7 @@ namespace
             return;
         }
 
-        godot::ClassDB::register_class<GDExtensionTemplate>();
-
-        godot::ClassDB::register_class<GDFLMii>();
-        //godot::ClassDB::register_class<GDFLMiiHead3D>();
-        //godot::ClassDB::register_class<GDFLMiiTextureRect>();
+        register_all();
     }
 
     /// @brief Called by Godot to let us do any cleanup.

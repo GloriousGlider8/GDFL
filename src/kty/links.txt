@@ -1,4 +1,0 @@
-g1 - RSD
-g2 - FFSD CFSD
-g3 - Studio Code
-g4 - CHARINFO

@@ -3,9 +3,10 @@ entry_symbol = "GDExtensionInit"
 compatibility_minimum = 4.1
 
 [icons]
-Example = "icons/Example.svg"
+Mii = "addons/gdfl/icons/mii.png"
+MiiResource = "addons/gdfl/icons/resource.png"
 
 [libraries]
-linux.x86_64 = "lib/Linux-x86_64/Debug/lib${PROJECT_NAME}-d.so"
-macos = "lib/Darwin-Universal/Debug/lib${PROJECT_NAME}-d.dylib"
-windows.x86_64 = "lib/Windows-AMD64/Debug/${LIB_PREFIX}${PROJECT_NAME}-d.dll"
+linux.x86_64 = "addons/gdfl/lib/Linux-x86_64/Debug/lib${PROJECT_NAME}-d.so"
+macos = "addons/gdfl/lib/Darwin-Universal/Debug/lib${PROJECT_NAME}-d.dylib"
+windows.x86_64 = "addons/gdfl/lib/Windows-AMD64/Debug/${LIB_PREFIX}${PROJECT_NAME}-d.dll"

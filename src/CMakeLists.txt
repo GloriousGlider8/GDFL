@@ -1,23 +1,19 @@
-# SPDX-License-Identifier: Unlicense
-
-target_sources( ${PROJECT_NAME}
+target_sources(${PROJECT_NAME}
     PRIVATE
-        Main.h
-        Main.cpp
-        GDExtensionTemplate.h
-        GDExtensionTemplate.cpp
+        All.hpp
         RegisterExtension.cpp
-        FFLWrapper.cpp
-        FFLWrapper.h
-        GDClassSTLConv.h
-        Types.h
-        PantsColor.h
-        DataUtils.cpp
+        Mii.cpp
+        Mii.hpp
+        MiiResource.hpp
+        MiiResource.cpp
+        Convert.hpp
+        Convert.cpp
+        CommonDefs.hpp
 )
 
-add_subdirectory(kty)
+add_subdirectory(inflatecpp)
 
-target_include_directories( ${PROJECT_NAME}
+target_include_directories(${PROJECT_NAME}
     PRIVATE
-        "src"
+        "${CMAKE_CURRENT_SOURCE_DIR}"
 )

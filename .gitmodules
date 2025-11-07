@@ -1,16 +1,3 @@
-[submodule "ffl"]
-	path = ffl
-	url = https://github.com/ariankordi/ffl
-[submodule "rio"]
-	path = rio
-	url = https://github.com/ariankordi/rio
-[submodule "ninTexUtils"]
-	path = ninTexUtils
-	url = https://github.com/ariankordi/ninTexUtils
-	branch = cpp-64bit-linux-fixes
-[submodule "kaitai_struct_cpp_stl_runtime"]
-	path = kaitai_struct_cpp_stl_runtime
-	url = https://github.com/kaitai-io/kaitai_struct_cpp_stl_runtime
-[submodule "glfw"]
-	path = glfw
-	url = https://github.com/glfw/glfw
+[submodule "extern/Mii.fu"]
+	path = extern/Mii.fu
+	url = https://github.com/GloriousGlider8/Mii

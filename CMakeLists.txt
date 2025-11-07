@@ -1,5 +1,3 @@
-# SPDX-License-Identifier: Unlicense
-
 cmake_minimum_required( VERSION 3.22 )
 
 message( STATUS "Using CMake ${CMAKE_VERSION}" )
@@ -32,7 +30,7 @@ project( GDFL
         CXX
         C
     VERSION
-        0.1.0
+        1.0.0
 )
 
 # Create our library
@@ -89,6 +87,8 @@ add_custom_command(
 # Create and include version info file from git
 include( GitVersionInfo )
 
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/extern/Mii.fu)
+target_link_libraries(${PROJECT_NAME} PRIVATE miifu)
 add_subdirectory( src )
 
 # Install library, extension file, and support files in ${CMAKE_INSTALL_PREFIX}/${PROJECT_NAME}
@@ -123,39 +123,11 @@ set( compiler_is_clang "$<OR:$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:Cla
 set( compiler_is_gnu "$<CXX_COMPILER_ID:GNU>" )
 set( compiler_is_msvc "$<CXX_COMPILER_ID:MSVC>" )
 
-# godot-cpp
-# From here: https://github.com/godotengine/godot-cpp
-#if ( NOT EXISTS "${CMAKE_CURRENT_LIST_DIR}/extern/godot-cpp/Makefile" )
-#    message(
-#        FATAL_ERROR
-#            "[${PROJECT_NAME}] The godot-cpp submodule was not downloaded. Please update submodules: git submodule update --init --recursive."
-#    )
-#endif()
-#
-#set( GODOT_CPP_SYSTEM_HEADERS ON CACHE BOOL "" FORCE )
-#
-#add_subdirectory( extern/godot-cpp )
-#
-#set_target_properties( godot-cpp
-#    PROPERTIES
-#        CXX_VISIBILITY_PRESET hidden    # visibility needs to be the same as the main library
-#)
-
 include_directories(
     extern/godot-cpp/include
     extern/godot-cpp/gen/include
+    extern/godot-cpp/build/gen/include
     extern/godot-cpp/gdextension
-    ffl/include
-    rio/include
-    ninTexUtils/include
-    kaitai_struct_cpp_stl_runtime
-    glfw/include
-)
-
-target_compile_definitions(${PROJECT_NAME} 
-	PUBLIC
-	$<$<CONFIG:Debug>:DEBUG_ENABLED;DEBUG_METHODS_ENABLED;RIO_DEBUG>
-	$<$<CONFIG:Release>:RIO_RELEASE>
 )
 
 if(MSVC)
@@ -165,7 +137,4 @@ endif()
 target_link_libraries( ${PROJECT_NAME}
     PRIVATE
         ${GODOT_LIB_IMPORT}
-        ${FFL_LIB_IMPORT}
-        ${KT_LIB_IMPORT}
-        ${GLFW_LIB_IMPORT}
 )

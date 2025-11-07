@@ -1,0 +1,43 @@
+public static class DecompressorConstants {
+	public const uint kCodeLenBits = 3;
+	public const uint kLiteralSyms = 288;
+	public const uint kEODMarkerSym = 256;
+	public const uint kMatchLenSymStart = 257;
+	public const uint kMatchLenSyms = 29;
+	public const uint kOffsetSyms = 32;
+	public const uint kMinMatchSize = 3;
+
+	public const uint[kMatchLenSyms] kMatchLenCode = {
+		32771,  32772,  32773,  32774,  32775,  32776,  32777,  32778,  98315,  98317,  
+		98319,  98321,  163859, 163863, 163867, 163871, 229411, 229419, 229427, 229435,
+		294979, 294995, 295011, 295027, 360579, 360611, 360643, 360675, 33026
+	};
+
+	public const uint[kOffsetSyms] kOffsetCode = {
+		1,      2,      3,      4,      65541,  65543,  131081, 131085, 196625, 196633,
+		262177, 262193, 327745, 327777, 393345, 393409, 459009, 459137, 524801, 525057,
+		590849, 591361, 657409, 658433, 724993, 727041, 794625, 798721, 868353, 876545,
+		0,      0
+	};
+}
+
+public class Decompressor {
+	/// Inflate zlib data.
+	/// ### Paramaters
+	/// * `compressedData` – zlib data
+	/// * `compressedDataSize` – size of zlib data, in bytes
+	/// * `out` – decompression buffer
+	/// * `outSizeMax` – maximum size of decompression buffer, in bytes
+	/// * `checksum` – defines if the decompressor should use a specific checksum
+	/// ### Returns
+	/// Number of bytes decompressed, or 0 in case of an error.
+	public uint Feed(byte[] compressedData, uint compressedDataSize, byte[] out, uint outSizeMax, bool checksum) {
+		uint finalBlock = 0;
+		uint currentOutOffset = 0;
+		long checkSum = 0;
+
+		if (compressedDataSize <= 2) {return 0;}
+		
+		return 0;
+	}
+}

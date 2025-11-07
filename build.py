@@ -2,37 +2,25 @@ import os
 import colorama as c
 import shutil
 import click
-
-# Required libraries:
-# VCPKG
-#   zlib
-#   libiconv
-#   gtest
-#   kaitai-struct-cpp-stl-runtime
-# Python
-#   click
-#   colorama
-
-# We need to prebuild godot-cpp so that we don't rebuild it every time we compile
+import re
 
 @click.command()
 @click.option("--keep-build", "-K", help="Keeps the current build directory.", is_flag=True)
-@click.option("--vcpkg-root", "-V", help=f"Location of VCPKG. (default: {os.getenv("VCPKG_ROOT")})", default=os.getenv("VCPKG_ROOT"), type=str)
-@click.option("--vcpkg-triplet", "-T", help="Target triplet for VCPKG. (default: x64-windows)", default="x64-windows", type=str)
 @click.option("--config-only", "-C", help="Only generates config files, no building.", is_flag=True)
 @click.option("--debug", "-D", help="Generates a debug build.", is_flag=True)
-@click.option("--godot-library", help="Name of library to use from godot-cpp. (default: windows.template_release.x86_64)", default="windows.template_release.x86_64", type=str)
-def main(keep_build, vcpkg_root, vcpkg_triplet, config_only, debug, godot_library):
+@click.option("--godot-library", "-G", help="Name of library to use from godot-cpp. (default: windows.template_[buildtype].x86_64)", default="[DEFAULT]", type=str)
+def main(keep_build, config_only, debug, godot_library):
 	btype = "Debug" if debug else "Release"
+	if godot_library == "[DEFAULT]":
+		godot_library = f"windows.template_{btype.lower()}.x86_64"
 
 	os.chdir(os.path.dirname(__file__))
   
 	if not keep_build and os.path.exists("build"):
 		shutil.rmtree("build")
- 
-	print(f"{c.Fore.CYAN}Configuring with VCPKG at {c.Fore.GREEN}{vcpkg_root}{c.Fore.CYAN}...{c.Fore.WHITE}{c.Style.DIM}")
 	
-	if os.system(f"cmake -B build -DCMAKE_BUILD_TYPE={btype} -DCMAKE_INSTALL_PREFIX=GDExtensionTemplate-install -DCMAKE_TOOLCHAIN_FILE=\"{os.path.join(vcpkg_root, "scripts", "buildsystems", "vcpkg.cmake")}\" -DVCPKG_TARGET_TRIPLET={vcpkg_triplet} -DGODOT_LIB_IMPORT=\"{os.path.join(os.path.dirname(__file__), "extern", "godot-cpp", "build", "bin", "libgodot-cpp." + godot_library + ".lib")}\" -DFFL_LIB_IMPORT=\"{os.path.join(os.path.dirname(__file__), "ffl", "build", btype, "ffl.lib")}\" -DKT_LIB_IMPORT=\"{os.path.join(os.path.dirname(__file__), "kaitai_struct_cpp_stl_runtime", "build", btype, "kaitai_struct_cpp_stl_runtime.lib")}\" -DGLFW_LIB_IMPORT=\"{os.path.join(os.path.dirname(__file__), "glfw", "build", "src", btype, "glfw3dll.lib")}\" > {os.path.join(os.path.dirname(__file__), "logs", "config.log")}") != 0:
+	print("Configuring build...")
+	if os.system(f"cmake -B build -DCMAKE_BUILD_TYPE={btype} -DCMAKE_INSTALL_PREFIX=GDExtensionTemplate-install -DGODOT_LIB_IMPORT=\"{os.path.join(os.path.dirname(__file__), "extern", "godot-cpp", "build", "bin", "libgodot-cpp." + godot_library + ".lib")}\" > {os.path.join(os.path.dirname(__file__), "logs", "config.log")}") != 0:
 		print(f"{c.Style.RESET_ALL}{c.Fore.RED}CMake config generation failed!\n{c.Fore.LIGHTRED_EX}Logs written to logs/config.log{c.Style.RESET_ALL}")
 		exit(1)
   
@@ -47,7 +35,7 @@ def main(keep_build, vcpkg_root, vcpkg_triplet, config_only, debug, godot_librar
 		exit(1)
   
 	print(f"{c.Style.RESET_ALL}{c.Fore.GREEN}Build successful!{c.Style.RESET_ALL}")
-	shutil.copytree(os.path.join(os.path.dirname(__file__), "build", "GDFL"), os.path.join(os.path.dirname(__file__), "testproj"), dirs_exist_ok=True)
+	shutil.copytree(os.path.join(os.path.dirname(__file__), "build", "GDFL"), os.path.join(os.path.dirname(__file__), os.path.join("testproj", "addons", "gdfl")), dirs_exist_ok=True)
 
 if __name__ == "__main__":
 	main()
