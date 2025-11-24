@@ -10,7 +10,7 @@ godot::Ref<Mii> Mii::FromVer3(godot::PackedByteArray data) {
     godot::Ref<Mii> mii;
     mii.instantiate();
     
-    std::shared_ptr<miifu::Ver3CharInfo> charInfo = std::make_shared<miifu::Ver3CharInfo>();
+    std::shared_ptr<miifu::Ver3CharInfo> charInfo = std::make_unique<miifu::Ver3CharInfo>();
 	miifu::Ver3StoreData::setFromBytes(data.ptr(), charInfo);
 	
     mii->mii_version = charInfo->getMiiVersion();

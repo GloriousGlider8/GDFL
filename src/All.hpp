@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Mii.hpp"
 #include "MiiResource.hpp"
 #include "Convert.hpp"
