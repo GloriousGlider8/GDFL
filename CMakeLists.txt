@@ -1,5 +1,7 @@
 cmake_minimum_required( VERSION 3.22 )
 
+set(CMAKE_INSTALL_PREFIX "GDExtensionTemplate-install")
+
 message( STATUS "Using CMake ${CMAKE_VERSION}" )
 
 # Require out-of-source builds

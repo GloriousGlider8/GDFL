@@ -1,14 +1,22 @@
 target_sources(${PROJECT_NAME}
     PRIVATE
         All.hpp
+
         RegisterExtension.cpp
+
         Mii.cpp
         Mii.hpp
+
         MiiResource.hpp
         MiiResource.cpp
+
         Convert.hpp
         Convert.cpp
+
         CommonDefs.hpp
+
+        ZLibImpl.hpp
+        ZLibImpl.cpp
 )
 
 add_subdirectory(inflatecpp)
